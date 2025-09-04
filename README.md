@@ -15,7 +15,6 @@ Sahayata Bazaar is a community-driven platform designed to connect service provi
 - Backend: Django (Python)
 - Frontend: HTML, CSS, JavaScript
 - Database: MySQL
-- Other Tools: Google Forms integration for service requests
 
 ## Project Flow
 - Users can register and login through a simple unified interface.
