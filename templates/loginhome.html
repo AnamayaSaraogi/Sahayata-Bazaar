@@ -1,0 +1,517 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sahaayat Bazaar</title>
+
+</head>
+<style>
+	
+	
+	body {
+		background: #fff;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 14px;
+		font-weight: normal;
+		line-height: 1;
+		margin: 0;
+		min-width: 960px;
+		padding: 0;
+	}
+	#header {
+		margin: 0 auto;
+		padding: 50px 0 50px;
+		text-align: center;
+		width: 960px;
+	}
+	#header a.logo {
+		display: block;
+		margin: 0 auto;
+		padding: 0;
+		width: 950px;
+	}
+	
+	#header ul li {
+		display: inline;
+		list-style: none;
+		margin: 0;
+		padding: 0 19px;
+	}
+	#header ul li a {
+		color: #252525;
+		display: inline-block;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 14px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0 0 3px;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	#header ul li a:hover, #header ul li.selected a {
+		color: #0ba39c;
+	}
+	#body div ul li {
+		opacity: 0;
+		transform: translateY(50px); /* Initial position off screen */
+		transition: opacity 0.5s ease, transform 1s ease;
+	  }
+	  
+	  #body div ul li.visible {
+		opacity: 1;
+		transform: translateY(0); /* Slide in from bottom */
+	  } 
+	#body {
+		margin: 0;
+		padding: 0 0 30px;
+		text-align: center;
+	}
+	#body h1 {
+		color: #fff;
+		display: inline;
+		font-family: poller_oneregular;
+		font-size: 35px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+	}
+	#body h1 span {
+		background: #252525;
+		display: inline-block;
+		padding: 15px 28px 12px;
+	}
+	#body > div {
+		margin: 0 auto;
+		padding: 0;
+		width: 960px;
+	}
+	#body > div img {
+		border: 2px solid #292929;
+		margin: 24px 0 0;
+		padding: 0;
+	}
+	#body > div .article {
+		margin: 0 auto;
+		padding: 30px 30px 0;
+		width: 560px;
+	}
+	#body > div .article h2 {
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 25px;
+		font-weight: normal;
+		margin: 0 0 30px;
+	}
+	#body > div .article h3 {
+		color: #252525;
+		line-height: 24px;
+		margin: 0;
+		padding: 0;
+	}
+	#body > div .article h4 {
+		background: #252525;
+		color: #fff;
+		display: inline-block;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 25px;
+		font-weight: normal;
+		margin: 0 0 30px;
+		padding: 8px 27px 10px;
+	}
+	#body > div .article p {
+		margin: 0 0 30px;
+	}
+	#body div ul {
+		margin: 0;
+		padding: 24px 10px 0;
+		width: 940px;
+	}
+	#body div ul li {
+		border: 2px solid #1a1a1a;
+		display: block;
+		list-style: none;
+		margin: 0 0 13px;
+		overflow: hidden;
+		padding: 0;
+	}
+	#body div ul li .figure {
+		border-right: 2px solid #1a1a1a;
+		float: left;
+		margin: 0;
+		padding: 0;
+		width: 376px;
+	}
+	#body div ul li img {
+		border: 0;
+		display: block;
+		margin: 0;
+		padding: 0;
+		opacity: 0.8;
+		transition: 0.5s ease-in-out;
+	}
+	#body div ul li .figure:hover img {
+		opacity: 1;
+	}
+	#body div ul li div {
+		float: left;
+		margin: 0;
+		padding: 63px 0 20px;
+		width: 558px;
+	}
+	#body div ul li div h3 {
+		color: #252525;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 25px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+		text-transform: uppercase;
+	}
+	#body div ul li div p {
+		padding: 30px 30px 18px;
+		align: left;
+		font-size: 18px;
+	}
+	#body div ul li div a.more {
+		background: #052614 ;
+		color: #fff;
+		display: inline-block;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 18px;
+		font-weight: normal;
+		margin: 0;
+		padding: 8px 28px;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	#body div ul li div a.more:hover {
+		color: #252525;
+		background: #fff;
+		border: 2px solid #252525;
+	}
+	#body #featured {
+		margin: 0 0 13px;
+		padding: 0;
+		position: relative;
+		width: 100%;
+	}
+	#body #featured img {
+		border: 0;
+		display: block;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+	#body #featured div {
+		left: 50%;
+		margin-left: -480px;
+		margin-top: -171px;
+		padding: 0 0 0 470px;
+		position: absolute;
+		top: 50%;
+		text-align: left;
+		width: 490px;
+	}
+	#body #featured div h2 {
+		background: #fff;
+		color: #000;
+		display: inline-block;
+		font-family: poller_oneregular;
+		font-size: 20px;
+		font-weight: normal;
+		margin: 0 0 18px;
+		padding: 23px 27px 20px;
+		text-transform: uppercase;
+	}
+	#body #featured div span {
+		background: #252525;
+		color: #fff;
+		display: inline-block;
+		font-size: 20px;
+		margin: 7px 0;
+		padding: 12px 27px;
+	}
+	#body #featured div a {
+		background: #0ba39c;
+		color: #fff;
+		display: inline-block;
+		font-size: 16px;
+		margin: 15px 0 0;
+		padding: 26px 27px 22px;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	#body #featured div a:hover {
+		background: #1fc3bc;
+	}
+	#body > ul {
+		margin: 0 auto;
+		overflow: hidden;
+		padding: 24px 0 0;
+		width: 960px;
+	}
+	#body > ul li {
+		display: block;
+		float: left;
+		margin: 0 10px 20px;
+		padding: 0;
+		width: 300px;
+	}
+	#body > ul li a {
+		color: #000;
+		display: block;
+		font-family: poller_oneregular;
+		font-size: 20px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	#body > ul li a img {
+		border: 2px solid #1a1a1a;
+		display: block;
+		margin: 0;
+		padding: 0;
+		opacity: .8;
+		transition: 0.5s ease-in-out;
+	}
+
+	#body > ul li a:hover img {
+		opacity: 1;
+	}
+
+	#body form #send {
+		background: #252525;
+		color: #fff;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 15px;
+		font-weight: normal;
+		display: inline-block;
+		padding: 20px 28px;
+		width: auto;
+	}
+	#body form #send:hover {
+		background: #fff;
+		color: #252525;
+		cursor: pointer;
+	}
+	#footer {
+		background: #252525;
+		margin: 0;
+		padding: 36px 0 42px;
+	}
+	#footer div {
+		margin: 0 auto;
+		overflow: hidden;
+		padding: 0;
+		width: 960px;
+	}
+	#footer div p {
+		color: #fff;
+		float: left;
+		line-height: 44px;
+		margin: 0 0 0 10px;
+		padding: 0;
+	}
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown a.dropbtn {
+  color: #252525;
+		display: inline-block;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 14px;
+		font-weight: normal;
+		margin: 0;
+		padding: 0 0 3px;
+		text-decoration: none;
+		text-transform: uppercase;
+}
+
+.dropdown a.dropbtn:hover {
+    color: #0ba39c;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1); /* Translucent white background */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+<body>
+	<div id="header">
+		<a href="about.html" class="logo">
+			<img src="{% static 'logo.jpg' %}" alt="">
+		</a>
+		<ul id="navigation">
+			<li>
+				<a href="{% url 'loginhome' %}">Home</a>
+			</li>
+			<li>
+				<a href="{% url 'loginaboutus' %}">About Us</a>
+			</li>
+
+      <li>
+				<a href="{% url 'provideservice' %}">Provide Service</a>
+			</li>
+
+			<div class="dropdown">
+        <a href="#" class="dropbtn">Services</a>
+          <div class="dropdown-content">
+            <a href="{% url 'loginfc' %}">Family Care</a>
+             <a href="{% url 'loginacad' %}">Academics</a>
+            <a href="{% url 'logint' %}">Transportation</a>
+          <a href="{% url 'loginbah' %}">Beauty and Health</a>
+          <a href="{% url 'logintech' %}">Technical</a>
+          <a href="{% url 'loginhh' %}">House Help</a>
+          </div>
+    </div>
+
+    <li>
+      <a href="{% url 'profile1' %}">Profile</a>
+    </li>
+			</ul>
+	</div>
+	<div id="body">
+		<h1><span>OUR SERVICES</span></h1>
+		<div>
+			<ul>
+				<li>
+					<a href="househelp.html" class="figure">
+						<img src="https://5.imimg.com/data5/XG/YO/MF/SELLER-9549927/maid-service-250x250.jpg" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>House Help</h3>
+						<p>
+							Get help with your daily house chores with our veriety of house help service options. Trusted service providers form your friendly neighbourhood. Every chore between ceiling and floor can be helped with.
+						</p>
+						<a href="{% url 'loginhh' %}" class="more">get service</a>
+					</div>
+				</li>
+				<li>
+					<a href="academichelp.html" class="figure">
+						<img src="https://marvel-b1-cdn.bc0a.com/f00000000295839/www.msudenver.edu/wp-content/uploads/2022/08/pexels-armin-rimoldi-5553061-1.jpg" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>Academic Help</h3>
+						<p>
+							Get academic support from experienced tutors and professionals at the click of a button. Choose convenient time slots and tutoring locations at the fees you decide. 
+						</p>
+						<a href="{% url 'loginacad' %}" class="more">get service</a>
+					</div>
+				</li>
+				<li>
+					<a href="familycare.html" class="figure">
+						<img src="https://cdn.shopify.com/s/files/1/1653/5157/files/Working_breeds_3_480x480.png?v=1686271318" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>Family care</h3>
+						<p>
+							Your loved ones deserve nothing but the best. Put your trust in our hands and let us help you look after your dearly elders, precious children and lovely pets so you can go on with your busy day.
+						</p>
+						<a href="{% url 'loginfc' %}" class="more">get service</a>
+					</div>
+				</li>
+				<li>
+					<a href="transport.html" class="figure">
+						<img src="https://media.istockphoto.com/id/599718046/photo/traffic-lights-different-focus.jpg?s=612x612&w=0&k=20&c=nTiGQwMezC5vOMRBOQDQeYmcrrq2_JEuVY9wqDXiJ64=" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>Transport</h3>
+						<p>
+							Need a quick ride? Take a seat and let us drive you to your destination. Trusted drivers, hygine maintained vehichles, pleasant journey and at a fair you agree to pay.
+						</p>
+						<a href="{% url 'logint' %}" class="more">get service</a>
+					</div>
+				</li>
+				<li>
+					<a href="mechanicalhelp.html" class="figure">
+						<img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/tool-box-tray/d/7/m/metal-tool-box-for-tools-tool-kit-box-for-home-and-garage-tool-original-imagsc26jz5b7ynv.jpeg?q=20&crop=false" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>mechanical SUPPORT</h3>
+						<p>
+							Broken pipes? Leaking taps? Faulty appliances? Electricity issues? Get quick assistance from skilled professionals at the time of your convenience and the price friendly to your budget.
+						</p>
+						<a href="{% url 'logintech' %}" class="more">get service</a>
+					</div>
+				</li>
+				<li>
+					<a href="beautyandhealth.html" class="figure">
+						<img src="https://external-preview.redd.it/how-to-change-your-skin-care-routine-for-summer-and-winter-v0-TI0vtlii7vJ2RSCZtG7vwnc1V9NOntcx40QIJilsFvs.jpg?auto=webp&s=15b5879f310e72bed5f27cf127639554cd0b2170" width=378px height=300px alt="">
+					</a>
+					<div>
+						<h3>BEAUTY AND HEALTH</h3>
+						<p>
+							Have to attend a party but not party ready? Need speedy health adive wihtout spending a wealthy sum? Get at home parlour services and online professional consult. All you need to do is spare a little time for a few click of buttons.
+						</p>
+						<a href="{% url 'loginbah' %}" class="more">get service</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="footer" align:center;>
+		<div>
+			<p>Reach us via E-mail : sahaayatbazaar@gmail.com</p>
+		</div>
+		<div>
+			<p> Customer Helpline : +91 54321 09876</p>
+		</div>
+		<div>
+		<P>Location : Pune, Maharashtra.</P>
+		</div>	
+		<div>
+			<p>&copy; 2023 by Sahaayat Bazaar. All rights reserved.</p>
+		</div>
+	</div>
+</body>
+<script>
+	window.addEventListener('scroll', function() {
+		var blocks = document.querySelectorAll('#body div ul li');
+		for (var i = 0; i < blocks.length; i++) {
+		  var block = blocks[i];
+		  if (isElementInViewport(block)) {
+			block.classList.add('visible');
+		  }
+		}
+	  });
+	  
+	  function isElementInViewport(el) {
+		var rect = el.getBoundingClientRect();
+		return (
+		  rect.top >= 0 &&
+		  rect.left >= 0 &&
+		  rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+		  rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	  }
+</script>
+</html>

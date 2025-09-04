@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Care Service</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .card-content p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .form-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-link:hover {
+            text-decoration: underline;
+        }
+
+        nav {
+          position:fixed;
+          top: 0;
+          right: 0;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          padding: 30px 20px;
+          box-sizing: border-box;
+          z-index: 9999; /* Ensure it's above other content */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        nav a {
+          color: #333; /* Link color */
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0, 0, 0, 0.1); /* Lighter translucent black background on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'aboutus' %}">About Us</a>
+       <!--<a href="{% url 'provideservice' %}">Provide Services</a>-->
+        <div class="dropdown">
+          <a href="#">Services</a>
+          <div class="dropdown-content">
+            <a href="{% url 'familycare' %}">Family Care</a>
+            <a href="{% url 'academic' %}">Academics</a>
+            <a href="{% url 'transportation' %}">Transportation</a>
+            <a href="{% url 'beautyandhealth' %}">Beauty and Health</a>
+            <a href="{% url 'technical' %}">Technical</a>
+            <a href="{% url 'househelp' %}">House Help</a>
+          </div>
+          
+        </div>
+        <a href="{% url 'login' %}">Login</a>    </nav>
+      <br><br><br><br>
+    <h1 style="text-align: center;">Family Care Service</h1>
+    <div class="container">
+        {% for service in services %}
+        <div class="card">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="Service Image">
+            {% else %}
+            <div style="height: 200px; background-color: #eee;"></div>  
+            {% endif %}
+            <div class="card-content">
+                <h3>{{ service.name }}</h3>
+                <p><strong>Username:</strong> {{ service.username }}</p>
+                <p><strong>Service Type:</strong> {{ service.uservice }}</p>
+                <p><strong>Description:</strong> {{ service.description }}</p>
+                <p><strong>Form:</strong> {% if service.form %}
+                    <a href="{{ service.form }}" class="form-link">{{ service.form }}</a>
+                {% else %}
+                    No form link provided
+                {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

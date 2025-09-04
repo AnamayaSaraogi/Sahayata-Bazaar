@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6bbbb;
+}
+
+/* Navigation styles */
+.topnav {
+    background-color: #ffffff;
+    overflow: hidden;
+    transition: margin-left 0.5s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-left: 0; /* Initial margin */
+    width: 100%; /* Take full width */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+    position: fixed;
+}
+
+.topnav.shift-content {
+    margin-left: 250px; /* Shift content when side nav is opened */
+}
+
+.topnav .menu-icon {
+    float: left;
+    margin-left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #f2f2f2;
+}
+
+/* Side navigation styles */
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f2f2f2;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #000000;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    background-color: #ddd;
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    background-color: transparent;
+}
+
+/* Container for chart and user count box */
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 20px;
+    transition: margin-left 0.5s; /* Transition for margin */
+}
+
+.container.shift-content {
+    margin-left: 250px; /* Shift content when side nav is opened */
+}
+
+/* Chart container */
+.chart-container {
+    flex: 0.4;
+    background-color: #e3dfdf;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+/* User count box */
+.user-count-box,
+.service-count-box,
+.users {
+    flex: 0.4;
+    background-color: #e3dfdf;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-left: 20px;
+    transition: margin-left 0.5s; /* Transition for margin */
+}
+
+.users.shift-content {
+    margin-left: 270px; /* Adjusted margin to accommodate side nav width */
+}
+
+.cardcontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    transition: margin-left 0.5s; /* Transition for margin */
+}
+
+.cardcontainer.shift-content {
+    margin-left: 270px; /* Adjusted margin to accommodate side nav width */
+}
+
+/* Heading style */
+.heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border-bottom: 1px solid #000000;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #dddddd;
+}
+
+.card {
+    width: calc(33.33% - 20px);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.card-content p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.form-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+    <span class="menu-icon" onclick="toggleNav()">&#9776;</span>
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'userinfo' %}">Users</a>
+    <a href="{% url 'reviewservices' %}">Review Services</a>
+    <a href="{% url 'login' %}" style="float:right;">Logout &nbsp;&nbsp;</a>
+    <a href="{% url 'addadmin' %}" style="float:right;">Add admin &nbsp;&nbsp;</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+    <a href="#" class="closebtn" onclick="toggleNav()">&times;</a>
+    <a href="#">Website Metrics</a>
+    <a href="#">Users</a>
+    <a href="#">Review Services</a>
+</div>
+<br><br><br><br><br>
+<div class="heading">Website Metrics</div>
+
+<div class="container" id="websiteMetrics">
+    <div class="chart-container">
+        <canvas id="genderChart"></canvas>
+    </div>
+
+    <div class="user-count-box">
+        <font style="font-size: 80px">Total Registered Users</font>
+        <br><br>
+        <p id="userCount" style="font-size: 70px; color: rgb(97, 7, 7);">Loading...</p>
+    </div>
+
+    <div class="service-count-box">
+        <font style="font-size: 80px">Total Uploaded Services</font>
+        <br><br>
+        <p id="serviceCount" style="font-size: 70px; color: rgb(97, 7, 7);">Loading...</p>
+    </div>
+</div>
+<br>
+<div class="heading" id="users">User information</div>
+<br>
+
+<div class="users">
+    <table>
+        <tr>
+            <th> &nbsp;</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td style="width: 100px; height: 100px;">
+                <img src="{{ user.profimage.url }}" style="border-radius: 50%; width: 100%; height: 100%;">
+            </td>
+            
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td style="width: 400px;">
+                {{ user.address }}<br>
+                {{ user.pin }}
+            </td>
+            <td>
+                {{ user.email }}<br>
+                {{ user.phone }}
+            </td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.dob }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <center>
+        <a href="{% url 'userinfo' %}">
+            <font style="font-size: large;">All users...</font>
+        </a>
+    </center>
+</div>
+
+<br><br>
+    <div class="heading">Services</div>
+    <br>
+
+<div class = "cardcontainer" id="reviewServices">
+{% for service in services %}
+        <div class="card">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="Service Image">
+            {% else %}
+            <div style="height: 200px; background-color: #eee;"></div>  
+            {% endif %}
+            <div class="card-content">
+                <h3>{{ service.name }}</h3>
+                <p><strong>Username:</strong> {{ service.username }}</p>
+                <p><strong>Service Type:</strong> {{ service.uservice }}</p>
+                <p><strong>Description:</strong> {{ service.description }}</p>
+                <p><strong>Form:</strong> {% if service.form %}
+                    <a href="{{ service.form }}" class="form-link">{{ service.form }}</a>
+                {% else %}
+                    No form link provided
+                {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+        
+</div>
+
+<br><br>
+        <center>
+            <a href="{% url 'reviewservices' %}">
+                <font style="font-size: large;">All services...</font>
+            </a>
+        </center>
+
+
+<script>
+    // Function to toggle the side navigation menu
+function toggleNav() {
+    var sidenav = document.getElementById("mySidenav");
+    var topnav = document.getElementById("myTopnav");
+    var container = document.querySelector(".container");
+    var users = document.querySelector(".users");
+    var cardcontainer = document.querySelector(".cardcontainer");
+
+    if (sidenav.style.width === "250px") {
+        // Close the side navigation menu
+        sidenav.style.width = "0";
+        topnav.classList.remove('shift-content');
+        container.classList.remove('shift-content');
+        users.classList.remove('shift-content');
+        cardcontainer.classList.remove('shift-content');
+    } else {
+        // Open the side navigation menu
+        sidenav.style.width = "250px";
+        topnav.classList.add('shift-content');
+        container.classList.add('shift-content');
+        users.classList.add('shift-content');
+        cardcontainer.classList.add('shift-content');
+    }
+}
+
+// Function to scroll to a specific element smoothly
+function scrollToElement(elementId) {
+    var element = document.getElementById(elementId);
+    if (element) {
+        // Scroll to the element with smooth behavior
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Event listener for clicking on links in the side navigation menu
+document.getElementById("mySidenav").addEventListener("click", function(event) {
+    var target = event.target;
+    if (target.tagName === "A") {
+        // Prevent default behavior of the link
+        event.preventDefault();
+        // Get the text content of the clicked link
+        var linkText = target.textContent.trim().toLowerCase();
+        // Scroll to the corresponding section based on the link text
+        if (linkText === "website metrics") {
+            scrollToElement("websiteMetrics");
+        } else if (linkText === "users") {
+            scrollToElement("users");
+        } else if (linkText === "review services") {
+            scrollToElement("reviewServices");
+        }
+        // Close the side navigation menu after clicking on a link
+        toggleNav();
+    }
+});
+
+// Function to fetch data and create the gender chart
+function fetchAndCreateChart() {
+    // Fetch gender ratio data from API
+    fetch('/api/gender_ratio/')
+        .then(response => response.json())
+        .then(data => {
+            // Create a pie chart using Chart.js
+            new Chart(document.getElementById('genderChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Female', 'Male'],
+                    datasets: [{
+                        label: 'Gender Ratio',
+                        data: [data.female, data.male],
+                        backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)'],
+                        borderWidth: 1
+                    }]
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+
+    // Fetch user count data from API
+    fetch('/api/user_count/')
+        .then(response => response.json())
+        .then(data => {
+            // Update the user count on the webpage
+            document.getElementById('userCount').textContent = data.count;
+        })
+        .catch(error => console.error('Error fetching user count:', error));
+
+    // Fetch service count data from API
+    fetch('/api/service_count/')
+        .then(response => response.json())
+        .then(data => {
+            // Update the service count on the webpage
+            document.getElementById('serviceCount').textContent = data.count;
+        })
+        .catch(error => console.error('Error fetching service count:', error));
+}
+
+// Function to scroll the page to the top
+function scrollToTop() {
+    window.scrollTo(0, 0);
+}
+
+// Function to initialize the webpage
+function initializePage() {
+    // Scroll to the top of the page
+    scrollToTop();
+    
+    // Fetch data and create the gender chart
+    fetchAndCreateChart();
+    // Ensure that the side navigation is closed initially
+    document.getElementById("myTopnav").classList.remove('shift-content');
+    // Ensure that the content is not shifted initially
+    document.querySelector(".container").classList.remove('shift-content');
+    // Ensure that the users section is not shifted initially
+    document.querySelector(".users").classList.remove('shift-content');
+    // Ensure that the card container is not shifted initially
+    document.querySelector(".cardcontainer").classList.remove('shift-content');
+}
+
+// Call the initializePage function when the window is loaded
+window.onload = initializePage;
+
+// Attach an event listener to the beforeunload event
+window.addEventListener('beforeunload', function(event) {
+    // Scroll to the top of the page before unloading
+    scrollToTop();
+});
+
+</script>
+
+</body>
+</html>
+

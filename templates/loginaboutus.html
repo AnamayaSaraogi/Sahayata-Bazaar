@@ -1,0 +1,560 @@
+<!--
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image Page</title>
+    <style>
+        body {
+            background-image: url("{% static 'register_bg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff; 
+            font-family: Arial, sans-serif; 
+        }
+        .aboutus {
+            color: #000;
+            text-align: left; 
+            background-color: rgba(255, 255, 255, 0.7); 
+            padding: -0px 20px;
+            box-sizing: border-box; 
+            margin-left: 5px;
+            margin-top: -90; 
+        }
+        .content {
+            color: #000;
+            text-align: center; 
+            background-color: rgba(255, 255, 255, 0.7); 
+            padding: 109.1px 40px;
+            box-sizing: border-box; 
+            margin-left: 500px;
+            margin-top: -30;   
+        }
+        .link-container {
+            align: left;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0px;
+          }
+  
+        .link-container a {
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.5); 
+            border: 8px solid rgba(255, 255, 255, 0.5); 
+            border-radius: 1.5px;
+            text-align: center;
+            line-height: 100px;
+            color: #333; 
+            text-decoration: none;
+            transition: background-color 0.3s, border-color 0.3s;
+          }
+  
+        .link-container a:hover {
+            background-color: rgba(255, 255, 255, 0.7); 
+            border-color: rgba(0, 0, 0, 0.7); 
+        }
+  
+        .alt-text {
+            position: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-0%, -150%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 1px;
+            display: none; 
+        }
+        .link-container a:hover .alt-text {
+            display: block; 
+        }
+    
+         .footer {
+            color: #000;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.7); 
+            padding: 50xp 10px;
+            box-sizing: border-box;
+           }
+    
+         .footer p {
+            margin: 5px 10px;
+        }
+
+        nav {
+          position:fixed;
+          top: 0;
+          right: 0;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7); 
+          padding: 30px 20px;
+          box-sizing: border-box;
+          z-index: 9999; 
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        nav a {
+          color: #333; 
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.7); 
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0, 0, 0, 0.1); 
+        }
+    </style>    
+</head>   
+<body> 
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'aboutus' %}">About Us</a>
+    <a href="{% url 'provideservice' %}">Provide Services</a>
+    <div class="dropdown">
+      <a href="#">Services</a>
+      <div class="dropdown-content">
+        <a href="{% url 'familycare' %}">Family Care</a>
+        <a href="{% url 'academic' %}">Academics</a>
+        <a href="{% url 'transportation' %}">Transportation</a>
+        <a href="{% url 'beautyandhealth' %}">Beauty and Health</a>
+        <a href="{% url 'technical' %}">Technical</a>
+        <a href="{% url 'househelp' %}">House Help</a>
+      </div>
+      
+    </div>
+    <a href="{% url 'login' %}">Login</a>
+</nav>
+    <div class="aboutus">
+        <br><br><br><br>
+        <p align="center"><h3> ABOUT US <br></h3></p>
+        <p> Nothing can match the feeling of safety, security and trust 
+               when you are surrounded by people you know. Furthermore, nothing
+               can match the fear and insecurity of the handling of vital everyday
+               tasks by strangers you do not have any information on. So why rely 
+               on the people you hardly trust for the services that can be provided 
+               by your neighbours and people of your community/locality.</p>
+   
+            <P>  Let's assume you had a platform where your everyday minor and vital needs could be met just by a few clicks on your smartphone screen. Let's assume you had trust worthy neighbours who could sit you baby for a night, garden you beloved plants, cook you delicious meal or drive you kids safely to their party instead of a complete stranger who you were forced to trust due to time and work constraints. Let's also assume you had a lists of all the viable options for a single service so you could choose what's best to fit you instead of compromising with just what was available. Wouldn't that be a dream?</p>
+               
+            <p> To bring this dream to reality, we have come up with one of the safest locality service share platform. A platform that enables you to get quick, budget friendly, safe and efficient services for you day to day tasks that occupy the time and effort you could use elsewhere.</p>
+            <p> This platform not only helps provide easy services but also enables students, homemakers and people with a little time to spare a source of side earning and experience. What better way to bond with a community than being able to help them with things that matter.</p>
+    </div>
+    <div class="content">
+        <h1>SAHAAYATA BAZAAR</h1>
+        <p><h4>A community service exchange platform.<h4></p>
+        <p><h4>Founded and Built by....<h4></p>
+    </div>
+    <div class="link-container">
+         <div>
+          <a href="#"><img src="{% static 'anamaya.jpg' %}" width=200px height=200xp alt="Family Care">
+            <div class="alt-text">Anamaya Saraogi</div></a>
+          <a href="#"><img src="{% static 'avneet.jpg' %}" width=200px height=200xp alt="House Help">
+            <div class="alt-text">Avneet Kaur</div> </a>  
+         </div>
+         <div>
+         <a href="#"><img src="{% static 'hussaina.jpg' %}" width=200px height=200xp alt="Academic Help">
+            <div class="alt-text">Hussaina Murtaza</div></a>
+          <a href="#"><img src="{% static 'aryan.jpg' %}" width=200px height=200xp alt="Transport">
+            <div class="alt-text">Aaryan Giri</div></a>
+         </div>
+    </div>
+<div class="footer">
+            <p>Contact Information: Email - sahaayatabazzar@gmail.com | Phone - +91 123456-7890 | Location: Pune, Maharashtra</p> 
+    
+</body>
+</html>
+-->
+
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>About Us</title>
+
+</head>
+<style>
+	@font-face {
+		font-family: 'poller_oneregular';
+		src: url('../fonts/pollerone/pollerone-webfont.eot');
+		src: url('../fonts/pollerone/pollerone-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/pollerone/pollerone-webfont.woff') format('woff'),
+			 url('../fonts/pollerone/pollerone-webfont.ttf') format('truetype'),
+			 url('../fonts/pollerone/pollerone-webfont.svg#poller_oneregular') format('svg');
+	}
+	@font-face {
+		font-family: 'leckerli_oneregular';
+		src: url('../fonts/leckerlione/leckerlione-regular-webfont.eot');
+		src: url('../fonts/leckerlione/leckerlione-regular-webfont.eot?#iefix') format('embedded-opentype'),
+			 url('../fonts/leckerlione/leckerlione-regular-webfont.woff') format('woff'),
+			 url('../fonts/leckerlione/leckerlione-regular-webfont.ttf') format('truetype'),
+			 url('../fonts/leckerlione/leckerlione-regular-webfont.svg#leckerli_oneregular') format('svg');
+	}
+	
+	/* General Styles */
+body {
+    background-image: url('https://www.shutterstock.com/image-photo/fragment-huge-brick-wall-painted-600nw-573465325.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    color: #fff;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+#header {
+    margin: 0 auto;
+    padding: 30px 311px 30px;
+    text-align: center;
+    width: 960px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#header a.logo {
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    width: 950px;
+}
+
+#header ul li {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0 19px;
+}
+
+#header ul li a {
+    color: #ffffff;
+    display: inline-block;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 0 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#header ul li a:hover, #header ul li.selected a {
+    color: #0ba39c;
+}
+
+/* Body Styles */
+#body {
+    margin: 0;
+    padding: 0 0 30px;
+    text-align: center;
+}
+
+#body h1 {
+    color: #ffffff;
+    display: inline;
+    font-family: poller_oneregular;
+    font-size: 35px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+#body h1 span {
+    background: #252525;
+    display: inline-block;
+    padding: 15px 28px 20px;
+    margin: 100;
+}
+
+#body > div {
+    margin: 0 auto;
+    padding: 0;
+    width: 960px;
+}
+
+#body > div img {
+    margin: 24px 0 0;
+    padding: 30px;
+}
+
+#body > div .article h3 {
+    text-color: #fff;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+#body > div .article p {
+    font-size: 19px;
+    margin: 0 0 50px;
+    text-align: left;
+    line-height: 40px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0 ,0.8); /* Translucent dark green background */
+    padding: 10px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+/* Link Container Styles */
+.link-container {
+    align: center;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.link-container a {
+    display: block;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.5); /* Translucent white background */
+    border: 8px solid rgba(255, 255, 255, 0.5); /* Translucent black border */
+    border-radius: 0.5px;
+    text-align: center;
+    line-height: 70px;
+    color: #333; /* Text color */
+    text-decoration: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.link-container a:hover {
+    background-color: rgba(255, 255, 255, 0.7); /* Lighter translucent white background on hover */
+    border-color: rgba(0, 0, 0, 0.7); /* Darker translucent black border on hover */
+}
+
+.alt-text {
+    position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-0%, -135%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 1px;
+    display: none; /* Hidden by default */
+}
+
+.link-container a:hover .alt-text {
+    display: block; /* Show on hover */
+}
+
+/* Footer Styles */
+#footer {
+    background: #252525;
+    margin: 0;
+    padding: 36px 0 42px;
+}
+
+#footer div {
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+    width: 960px;
+}
+
+#footer div p {
+    font-size: 17px;
+    color: #fff;
+    float: center;
+    line-height: 44px;
+    margin: 0 0 0 10px;
+    padding: 0;
+}
+
+/* Dropdown Styles */
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown a.dropbtn {
+    color: #ffffff;
+    display: inline-block;
+    font-family: "Arial Black", Gadget, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 0 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.dropdown a.dropbtn:hover {
+    color: #0ba39c;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 1); /* Translucent white background */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+</style>
+<body>
+	<div id="header">
+		<a href="{% url 'loginhome' %}" class="logo">
+			<img src="C:\Users\Husena\Desktop\saba\sab\templates\logo.jpg" alt="">
+		</a>
+		<ul id="navigation">
+			
+			<li>
+				<a href="{% url 'loginhome' %}">Home</a>
+			</li>
+
+			<li>
+				<a href="{% url 'loginaboutus' %}">About Us</a>
+			</li>
+
+      <li>
+				<a href="{% url 'provideservice' %}">Provide Service</a>
+			</li>
+
+			<div class="dropdown">
+  				<a href="#" class="dropbtn">Services</a>
+  					<div class="dropdown-content">
+    					<a href="{% url 'loginfc' %}">Family Care</a>
+   						<a href="{% url 'loginacad' %}">Academics</a>
+    					<a href="{% url 'logint' %}">Transportation</a>
+						<a href="{% url 'loginbah' %}">Beauty and Health</a>
+						<a href="{% url 'logintech' %}">Technical</a>
+						<a href="{% url 'loginhh' %}">House Help</a>
+  					</div>
+			</div>
+
+			
+
+			<li>
+				<a href="{% url 'profile1' %}">Profile</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">
+		<h1><span>About Us </span></h1>
+		<div>
+			<div>
+			<img src="https://www.quaker.org.uk/media/W1siZiIsIjIwMTgvMTIvMTMvMTQvMDUvNTQvN2UxMmY5MTAtZWExYi00MDE1LTlmYmEtOGVmOGVkODhiYzA4L1JhY2tNdWx0aXBhcnQyMDE4MTIxMy0xMi16YTZlbDMuanBnIl0sWyJwIiwidGh1bWIiLCI4MjB4MTIwMCJdXQ" alt="">
+			</div>
+			<div class="article">
+				
+				<p>
+				Let's assume you had a platform where your everyday minor and vital needs could be met just by a few 
+				clicks on your smartphone screen. Let's assume you had trust worthy neighbours who could look after baby
+				for a night, garden your beloved plants, cook you delicious meals or drive your family safely to their 
+				destinations instead of a complete stranger who you were forced to trust due to time and work constraints.
+				Let's also assume you had a list of all the viable options for a single service so you could choose
+				what's best to fit you instead of compromising with just what was available. Wouldn't that be a dream?
+				To bring this dream to reality, we have come up with one of the safest locality service share 
+				platform.<br> SAHAAYATA BAZAAR. A platform that enables you to get quick, budget friendly, safe and efficient
+				services for youR day to day tasks that occupy the time and effort you could use elsewhere.
+				This platform not only helps provide easy services but also enables students, homemakers
+				and people with a little time to spare a source of side earning and experience. With our verification process
+				we make sure to only enlist and authenticate the service providers that we ourselves turst. We worry 
+				about your safety  so you dont have to. Afterall, what better
+				way to bond with a community than being able to help them with things that matter.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="link-container">
+	
+	   <div>
+		 <a href="#"><img src="C:\Users\Husena\Desktop\saba\sab\templates\anamaya.jpg" width=300px height=300xp alt="Anamaya">
+		   <div class="alt-text">Co-founder Anamaya Saraogi</div></a>
+		 <a href="#"><img src="C:\Users\Husena\Desktop\saba\sab\templates\avneet.jpg" width=300px height=300xp alt="Avneet">
+		   <div class="alt-text">Co-founder Avneet Kaur</div> </a>  
+		 </div>
+
+		<div>
+		<a href="#"><img src="C:\Users\Husena\Desktop\saba\sab\templates\hussaina.jpg" width=300px height=300xp alt="Hussaina">
+		   <div class="alt-text">Co-founder Hussaina Murtaza<br></div></a>
+		 <a href="#"><img src="C:\Users\Husena\Desktop\saba\sab\templates\aaryan.jpg" width=300px height=300xp alt="Aaryan">
+		   <div class="alt-text">Co-founder Aaryan Giri</div></a>
+		</div>
+   </div>
+   <div id="footer" align:center;>
+	<div>
+		<p>Reach us via E-mail : sahaayatbazaar@gmail.com</p>
+	</div>
+	<div>
+		<p> Customer Helpline : +91 54321 09876</p>
+	</div>
+	<div>
+	<P>Location : Pune, Maharashtra.</P>
+	</div>	
+	<div>
+		<p>&copy; 2023 by Sahaayat Bazaar. All rights reserved.</p>
+	</div>
+</div>
+</body>
+</html>

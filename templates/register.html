@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Registration</title>
+    <style>
+        body {
+            background-image: url("{% static 'register_bg.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .col-6 {
+            width: 45%;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select, input[type="file"] ,
+        input[type="password"] 
+        {
+            width: 100%;
+            padding: 15px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5000px;
+            box-sizing: border-box;
+            background-color: #ccc;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        select {
+            width: 100%;
+        }
+
+        button[type="submit"],
+        button {
+            background-color: #602b08;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 5000px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        button[type="submit"]:hover,
+        button:hover {
+            background-color: #9d0404b6;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <table>
+        <tr>
+            <td>
+                <font size="6"> Create an account </font> 
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+
+            <td>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" id="name" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="username" name="username" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="password" id="password1" name="password1" placeholder="Password" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="password" id="password2" name="password2" placeholder="Confirm password" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" id="cw" name="cw" placeholder="Code word to revive account" required>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" id="aadhar" name="aadhar" placeholder="Aadhar Number" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="email" id="email" name="email" placeholder="Email Id" required>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="number" id="phone" name="phone" placeholder="Phone Number" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" id="gender" name="gender" placeholder="Gender" required>
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="date" id="dob" name="dob" placeholder="Date Of Birth" required>
+                        </div>
+                        <div class="col-6">
+                            <input type="number" id="pin" name="pin" placeholder="Pin number" required>
+                        </div>
+                    </div>
+                    <input type="text" id="address" name="address" placeholder="Address" required><br>
+                    <input type="file" id="profimage" name="profimage" placeholder="Profile Image" required>
+                    <br>
+                    <button type="submit">Register</button>
+                </form>
+                <br>&nbsp;&nbsp;
+                <a href="{% url 'login' %}"><font color="black">Back to Login</font></a>
+                <br><br>
+                <font size="3">{{ error }}</font>
+
+            </td>
+        </tr>
+    </table>
+    
+    </center>
+</body>
+</html>

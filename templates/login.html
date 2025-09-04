@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    
+    <style>
+        body {
+            background-image: url("{% static 'register_bg.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5000px;
+            box-sizing: border-box;
+            background-color: #ccc;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        button[type="submit"],
+        button[id="register"] {
+            background-color: #602b08;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 5000px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        button[type="submit"]:hover,
+        button[id="register"]:hover {
+            background-color: #9d0404b6;
+        }
+
+        button[id="choiceAdmin"],
+        button[id="choiceUser"] {
+            background-color: #602b08;
+            color: white;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 45%;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        button[id="choiceAdmin"]:hover,
+        button[id="choiceUser"]:hover {
+            background-color: #9d0404b6;
+        }
+        
+        nav {
+          position:fixed;
+          top: 0;
+          right: 0;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          padding: 30px 20px;
+          box-sizing: border-box;
+          z-index: 9999; /* Ensure it's above other content */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        nav a {
+          color: #333; /* Link color */
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0, 0, 0, 0.1); /* Lighter translucent black background on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'aboutus' %}">About Us</a>
+       <!--<a href="{% url 'provideservice' %}">Provide Services</a>-->
+        <div class="dropdown">
+          <a href="#">Services</a>
+          <div class="dropdown-content">
+            <a href="{% url 'familycare' %}">Family Care</a>
+            <a href="{% url 'academic' %}">Academics</a>
+            <a href="{% url 'transportation' %}">Transportation</a>
+            <a href="{% url 'beautyandhealth' %}">Beauty and Health</a>
+            <a href="{% url 'technical' %}">Technical</a>
+            <a href="{% url 'househelp' %}">House Help</a>
+          </div>
+          
+        </div>
+        <a href="{% url 'login' %}">Login</a>
+    </nav>
+    <table>
+        <tr>
+            <td>
+                <font size="6">Have an account ?</font>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            </td>
+            <td>
+                <button id="choiceAdmin" onclick="showAdminForm()">Admin</button> &nbsp;&nbsp;&nbsp;
+                <button id="choiceUser" onclick="showUserForm()">User</button>
+                
+                <form id="userForm" method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <input type="text" id="username" name="username" placeholder="Username">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <button type="submit">Login</button>
+                    <br><br>
+                    <a href="{% url 'forgotpassword' %}"><font color="black">Forgot password?</font></a>
+                    <br><br>
+                    {% if error_user %}
+                        <p>{{ error_user }}</p>
+                    {% endif %}
+                    <font ><i>_______________or_______________</i></font>
+                    <br><br>
+                </form>
+                <div id="registerButton" style="display: none;">
+                    <button id="register" onclick="window.location.href='{% url 'register' %}'">Register</button>
+                </div>
+
+                <br><br>
+                
+                <form id="adminForm" method="post" action="{% url 'adminlogin' %}">
+                    {% csrf_token %}
+                    <input type="text" id="adminUsername" name="adminUsername" placeholder="Admin Username">
+                    <input type="password" id="adminPassword" name="adminPassword" placeholder="Admin Password">
+                    <button type="submit">Login</button>
+                    <br><br>
+                    {% if error_admin %}
+                        <p>{{ error_admin }}</p>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function showAdminForm() {
+            document.getElementById("adminForm").style.display = "block";
+            document.getElementById("userForm").style.display = "none";
+            document.getElementById("registerButton").style.display = "none";
+        }
+
+        function showUserForm() {
+            document.getElementById("adminForm").style.display = "none";
+            document.getElementById("userForm").style.display = "block";
+            document.getElementById("registerButton").style.display = "block";
+        }
+
+        window.onload = function() {
+            var adminFormSubmitted = document.getElementById("admin_form_submitted").value;
+            if (adminFormSubmitted) {
+                showAdminForm();
+            } else {
+                showUserForm();
+            }
+        };
+    </script>
+
+    <input type="hidden" id="admin_form_submitted" name="admin_form_submitted" value="{% if admin_form_submitted %}true{% endif %}">
+
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Form</title>
+</head>
+<body>
+    <h2>Service Form</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Form</title>
+</head>
+<body>
+    <h2>Service Form</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+        
+        <label for="service_type">Service:</label>
+        <input type="text" id="service_type" name="service_type"><br>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br>
+        
+        <button type="submit">Submit</button>
+        {{msg}}
+    </form>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Form</title>
+</head>
+<body>
+    <h2>Service Form</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+        
+        <label for="service_type">Service:</label>
+        <input type="text" id="service_type" name="service_type"><br>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br>
+        
+        <label for="image">Image:</label>
+        <input type="file" id="image" name="image"><br>
+
+        <label for="form">form:</label>
+        <input type="url" id="form" name="form"><br>
+
+        <button type="submit">Submit</button>
+        {{msg}}{{error}}
+    </form>
+</body>
+</html>
+-->
+
+<!--
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Service Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'register_bg.jpg' %}");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"],
+        textarea,
+        input[type="url"],
+        button[type="submit"] {
+            width: calc(100% - 20px); /* Adjusted width to account for padding */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Service Form</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="service_type">Service:</label>
+            <input type="text" id="service_type" name="service_type">
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+
+            <label for="form">Form:</label>
+            <input type="url" id="form" name="form">
+
+            <button type="submit">Submit</button>
+            {% if msg %}
+            <p class="success">{{ msg }}</p>
+            {% endif %}
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Service Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'register_bg.jpg' %}");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"],
+        textarea,
+        input[type="url"],
+        button[type="submit"],
+        .custom-button {
+            width: calc(100% - 20px); /* Adjusted width to account for padding */
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        input[type="submit"],
+        .custom-button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        .custom-button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+        nav {
+          position:fixed;
+          top: 0;
+          right: 0;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          padding: 30px 20px;
+          box-sizing: border-box;
+          z-index: 9999; /* Ensure it's above other content */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        nav a {
+          color: #333; /* Link color */
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0, 0, 0, 0.1); /* Lighter translucent black background on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'loginhome' %}">Home</a>
+        <a href="{% url 'loginaboutus' %}">About Us</a>
+        <a href="{% url 'provideservice' %}">Provide Services</a>
+        <div class="dropdown">
+          <a href="#">Services</a>
+          <div class="dropdown-content">
+            <a href="{% url 'loginfc' %}">Family Care</a>
+            <a href="{% url 'loginacad' %}">Academics</a>
+            <a href="{% url 'logint' %}">Transportation</a>
+            <a href="{% url 'loginbah' %}">Beauty and Health</a>
+            <a href="{% url 'logintech' %}">Technical</a>
+            <a href="{% url 'loginhh' %}">House Help</a>
+          </div>
+          
+        </div>
+        <a href="{% url 'profile1' %}">Profile</a>
+    </nav>
+      <br><br><br><br>
+    <div class="container">
+        <h2>Service Form</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" >
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            
+            <label for="service_type">Service:</label>
+            <input type="text" id="service_type" name="service_type">
+            
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image">
+
+            <label for="form">Form:</label>
+            <input type="url" id="form" name="form">
+
+            <button type="submit">Submit</button>
+            {% if msg %}
+            <p class="success">{{ msg }}</p>
+            {% endif %}
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+        </form>
+        <br><br>
+        <!-- Button Form -->
+        <form method="post" action="{% url 'changepreference' %}">
+            {% csrf_token %}
+            <button class="custom-button" type="submit">Become a Service Provider</button>
+        </form>
+    </div>
+</body>
+</html>

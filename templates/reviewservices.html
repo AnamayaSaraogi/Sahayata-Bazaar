@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .card {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .card-content p {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .form-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .form-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation styles */
+        .topnav {
+            background-color: #ffffff;
+            overflow: hidden;
+            transition: margin-left 0.5s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-left: 0; /* Initial margin */
+            width: 100%; /* Take full width */
+            box-sizing: border-box; /* Ensure padding and border are included in width */
+            position: fixed;
+        }
+
+        .topnav.shift-content {
+            margin-left: 250px; /* Shift content when side nav is opened */
+        }
+
+        .topnav .menu-icon {
+            float: left;
+            margin-left: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .topnav a:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'userinfo' %}">Users</a>
+        <a href="{% url 'reviewservices' %}">Review Services</a>
+        <a href="{% url 'login' %}" style="float:right;">Logout &nbsp;&nbsp;</a>
+        <a href="{% url 'addadmin' %}" style="float:right;">Add admin &nbsp;&nbsp;</a>
+    </div>
+      <br><br><br><br>
+    <div class="container">
+        {% for service in services %}
+        <div class="card">
+            {% if service.image %}
+            <img src="{{ service.image.url }}" alt="Service Image">
+            {% else %}
+            <div style="height: 200px; background-color: #eee;"></div>  
+            {% endif %}
+            <div class="card-content">
+                <h3>{{ service.name }}</h3>
+                <p><strong>Username:</strong> {{ service.username }}</p>
+                <p><strong>Service Type:</strong> {{ service.uservice }}</p>
+                <p><strong>Description:</strong> {{ service.description }}</p>
+                <p><strong>Form:</strong> {% if service.form %}
+                    <a href="{{ service.form }}" class="form-link">{{ service.form }}</a>
+                {% else %}
+                    No form link provided
+                {% endif %}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+

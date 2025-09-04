@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Admin</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .topnav {
+            background-color: #ffffff;
+            overflow: hidden;
+            transition: margin-left 0.5s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-left: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+        }
+
+        .topnav.shift-content {
+            margin-left: 250px;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .topnav a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 500px;
+            height: 400px;
+            margin: 100px auto; /* Center the container */
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+            border-radius: 10px; /* Add rounded border */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: calc(100% - 10px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topnav" id="myTopnav">
+    <a href="{% url 'dashboard' %}">Dashboard</a>
+    <a href="{% url 'userinfo' %}">Users</a>
+    <a href="{% url 'reviewservices' %}">Review Services</a>
+    <a href="{% url 'addadmin' %}" style="float:right;">Add admin &nbsp;&nbsp;</a>
+</div>
+
+<div class="container">
+    <h2 style="text-align: center;">Add Admin</h2>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" placeholder="Enter username">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" placeholder="Enter password">
+        </div>
+        <br>
+        <button type="submit" class="btn">
+            <h3>Submit</h3>
+        </button>
+    </form>
+    <br>
+    {{msg}}
+</div>
+
+</body>
+</html>

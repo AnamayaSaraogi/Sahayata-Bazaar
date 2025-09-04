@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #9a9292;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin: 0; 
+        }
+
+        nav {
+          position:fixed;
+          top: 0;
+          right: 0;
+          width: 100%;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          padding: 30px 20px;
+          box-sizing: border-box;
+          z-index: 9999; /* Ensure it's above other content */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        nav a {
+          color: #333; /* Link color */
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: rgba(255, 255, 255, 0.7); /* White translucent background */
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+
+        .dropdown-content a {
+          display: block;
+          padding: 10px;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .dropdown-content a:hover {
+          background-color: rgba(0, 0, 0, 0.1); /* Lighter translucent black background on hover */
+        }
+
+        .container {
+            width: 30%;
+            height: 100vh;
+            background-color: rgb(171, 62, 22);
+            padding-top: 20px;
+            padding-left: 20px;
+            position: relative; 
+        }
+
+        .img {
+            width: 250px; 
+            height: 250px;
+            border-radius: 50%; 
+            background-size: cover; 
+            background-position: center; 
+            margin: 0 auto; 
+            position: absolute; 
+            top: 200px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+
+        .info {
+            text-align: center; 
+            color: #ffffff; 
+            margin-top: 30px; 
+        }
+
+        .info p {
+            font-size: 20px; 
+            margin: 5px 0; 
+        }
+
+       
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #602b08;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 5000px;
+            cursor: pointer;
+            width: 180px;
+            font-size: 16px;
+            outline: none; 
+        }
+
+        button:hover {
+            background-color: #9d0404b6;
+        }
+
+        .additional-info {
+            width: 60%;
+            padding: 20px;
+            text-align: left;
+            padding-left: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'loginhome' %}">Home</a>
+        <a href="{% url 'loginaboutus' %}">About Us</a>
+        <a href="{% url 'provideservice' %}">Provide Services</a>
+        <div class="dropdown">
+          <a href="#">Services</a>
+          <div class="dropdown-content">
+            <a href="{% url 'loginfc' %}">Family Care</a>
+            <a href="{% url 'loginacad' %}">Academics</a>
+            <a href="{% url 'logint' %}">Transportation</a>
+            <a href="{% url 'loginbah' %}">Beauty and Health</a>
+            <a href="{% url 'logintech' %}">Technical</a>
+            <a href="{% url 'loginhh' %}">House Help</a>
+          </div>
+          
+        </div>
+        <a href="{% url 'profile1' %}">Profile</a>
+    </nav>
+      
+    <div class="container">
+        <br><br><br><br>
+        <h1 style="text-align: center;">Hello {{ info.name }}</h1>
+        
+        <div class="img" style="background-image: url('{{ info.profimage.url }}');"></div> 
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <center>
+            <font style="font-size: 30px; color: #000;">{{ info.username }}</font> <br>
+            <font style="font-size: 20px; color: #000;">{{ info.op }}</font>
+        </center>
+
+        <br><br>
+        <div class="buttons">
+            <form action="{% url 'delete_account' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete Account</button>
+            </form>
+            &nbsp;&nbsp;&nbsp;
+            <form action="{% url 'logout_user' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="additional-info">
+        <h1 style="text-align: center;">User Information </h1><br>
+        <font style="font-size: 23px; color: #000;">Address : {{ info.address }}</font><br><br>
+        <font style="font-size: 23px; color: #000;"> Aadhar Number: {{ info.aadhar }}</font><br><br>
+        <font style="font-size: 23px; color: #000;"> Phone Number: {{ info.phone }}</font><br><br>
+        <font style="font-size: 23px; color: #000;"> Gender: {{ info.gender }}</font><br><br>
+        <font style="font-size: 23px; color: #000;"> Date of Birth: {{ info.dob }}</font><br><br>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
